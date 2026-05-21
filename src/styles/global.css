@@ -36,7 +36,7 @@
     @apply btn bg-navy text-white hover:bg-navy-500 hover:shadow-lg hover:shadow-navy/20;
   }
   .btn-gold {
-    @apply btn bg-gold-600 text-white hover:bg-gold-700 hover:shadow-lg hover:shadow-gold/40;
+    @apply btn bg-gold-500 text-navy-900 hover:bg-gold-400 hover:shadow-lg hover:shadow-gold/40;
   }
   .btn-outline {
     @apply btn border-2 border-white text-white hover:bg-white hover:text-navy;
@@ -48,7 +48,7 @@
     @apply mx-auto max-w-7xl px-5 sm:px-8;
   }
   .eyebrow {
-    @apply inline-block text-gold-700 font-semibold tracking-[0.2em] text-xs uppercase mb-3;
+    @apply inline-block text-gold-800 font-semibold tracking-[0.2em] text-xs uppercase mb-3;
   }
   .section-title {
     @apply font-serif text-3xl sm:text-4xl md:text-5xl text-navy leading-tight;

@@ -11,10 +11,10 @@ interface Props {
 const { title, blurb, image, href = '/services' } = Astro.props;
 ---
 <article class="reveal group bg-white rounded-sm overflow-hidden shadow-sm hover:shadow-2xl hover:shadow-navy/10 transition-all duration-500 flex flex-col">
-  <a href={href} class="block overflow-hidden aspect-[16/9]" tabindex="-1" aria-hidden="true">
+  <a href={href} class="block overflow-hidden aspect-[16/9]" aria-label={`${title} — view service details`}>
     <Image
       src={image}
-      alt=""
+      alt={`${title} install by K-1 Custom Orlando`}
       widths={[400, 600, 900]}
       sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
       class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
