@@ -1,0 +1,77 @@
+---
+import Base from '@/layouts/Base.astro';
+import Parallax from '@/components/Parallax.astro';
+import ContactForm from '@/components/ContactForm.astro';
+import ContactInfoStrip from '@/components/ContactInfoStrip.astro';
+import bg from '@/assets/images/gallery/project-11.jpg';
+import { site } from '@/data/site';
+---
+<Base
+  title="Contact K-1 Custom | Orlando Car Audio & Tint Shop"
+  description="Reach K-1 Custom in Orlando, FL. Call (407) 440-3321 or send a message for a free quote on car audio, window tint, ceramic coating, wraps, and accessories."
+  path="/contact"
+  breadcrumbs={[{ name: 'Home', url: '/' }, { name: 'Contact Us', url: '/contact/' }]}
+>
+  <Parallax image={bg} overlay="bg-navy/85" height="min-h-[340px]">
+    <div class="text-center py-12">
+      <span class="eyebrow !text-gold-200">Get in Touch</span>
+      <h1 class="font-serif text-4xl md:text-5xl text-white uppercase">Contact K-1 Custom</h1>
+      <p class="text-white/90 mt-4 max-w-2xl mx-auto">
+        Have a question about any of our products or services? Want to speak to a car audio specialist or schedule an appointment? Give us a call or send a message and we'll get right back to you.
+      </p>
+    </div>
+  </Parallax>
+
+  <ContactInfoStrip />
+
+  <section class="py-24">
+    <div class="container-x grid lg:grid-cols-5 gap-12">
+      <div class="lg:col-span-2 reveal">
+        <span class="eyebrow">Visit the Shop</span>
+        <h2 class="section-title !text-3xl">Stop by, call, or message us.</h2>
+        <div class="gold-rule"></div>
+        <p class="text-navy-500 leading-relaxed">
+          The best way to plan a custom install is in person. Bring your vehicle by during business hours and we'll walk you through options, pricing, and what's possible for your build.
+        </p>
+        <dl class="mt-8 space-y-4 text-navy-600">
+          <div>
+            <dt class="text-xs uppercase tracking-[0.18em] text-gold-700 font-semibold">Address</dt>
+            <dd class="mt-1">{site.address.street}, {site.address.city}, {site.address.region} {site.address.postal}</dd>
+          </div>
+          <div>
+            <dt class="text-xs uppercase tracking-[0.18em] text-gold-700 font-semibold">Phone</dt>
+            <dd class="mt-1"><a href={site.phoneHref} class="hover:text-gold-700">{site.phone}</a></dd>
+          </div>
+          <div>
+            <dt class="text-xs uppercase tracking-[0.18em] text-gold-700 font-semibold">Email</dt>
+            <dd class="mt-1"><a href={`mailto:${site.email}`} class="hover:text-gold-700">{site.email}</a></dd>
+          </div>
+          <div>
+            <dt class="text-xs uppercase tracking-[0.18em] text-gold-700 font-semibold">Hours</dt>
+            <dd class="mt-1">{site.hours.weekdays}<br />{site.hours.weekend}</dd>
+          </div>
+        </dl>
+      </div>
+      <div class="lg:col-span-3 reveal bg-white p-7 md:p-10 rounded-sm shadow-xl border border-navy-50">
+        <h2 class="font-serif text-2xl text-navy mb-2 uppercase">How Can We Help You?</h2>
+        <p class="text-sm text-navy-500 mb-7">We typically respond within one business day.</p>
+        <ContactForm />
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-stone/50 py-12">
+    <div class="container-x">
+      <iframe
+        title="K-1 Custom location map"
+        src="https://www.google.com/maps?q=6647+Narcoossee+Rd+Suite+120+Orlando+FL+32822&output=embed"
+        width="100%"
+        height="400"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        sandbox="allow-scripts allow-popups"
+        class="rounded-sm shadow-md"
+      ></iframe>
+    </div>
+  </section>
+</Base>

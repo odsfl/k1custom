@@ -1,0 +1,64 @@
+---
+import Base from '@/layouts/Base.astro';
+import Parallax from '@/components/Parallax.astro';
+import SectionHeader from '@/components/SectionHeader.astro';
+import GalleryGrid from '@/components/GalleryGrid.astro';
+import bg from '@/assets/images/gallery/project-07.jpg';
+import cta from '@/assets/images/gallery/project-19.jpg';
+import { gallery } from '@/data/gallery';
+import { site } from '@/data/site';
+
+const imageGallerySchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ImageGallery',
+  '@id': `${site.url}/gallery/#gallery`,
+  name: 'K-1 Custom Project Gallery',
+  url: `${site.url}/gallery/`,
+  image: gallery.slice(0, 20).map((g) => ({
+    '@type': 'ImageObject',
+    contentUrl: new URL(g.src.src, site.url).toString(),
+    caption: g.label,
+  })),
+};
+---
+<Base
+  title="Photo Gallery | K-1 Custom Orlando Car Audio Projects"
+  description="Recent car audio installs, window tinting, ceramic coatings, vehicle wraps and custom builds by K-1 Custom in Orlando, FL. See our work."
+  path="/gallery"
+  breadcrumbs={[{ name: 'Home', url: '/' }, { name: 'Gallery', url: '/gallery/' }]}
+>
+  <Parallax image={bg} overlay="bg-navy/85" height="min-h-[340px]">
+    <div class="text-center py-12">
+      <span class="eyebrow !text-gold-200">Our Portfolio</span>
+      <h1 class="font-serif text-4xl md:text-5xl text-white uppercase">Photo Gallery</h1>
+      <p class="text-white/90 mt-4 max-w-2xl mx-auto">
+        A selection of recent car audio builds, tint jobs, ceramic coats, wraps, and custom installs from the K-1 shop floor.
+      </p>
+    </div>
+  </Parallax>
+
+  <section class="py-24">
+    <div class="container-x">
+      <div class="max-w-3xl mx-auto text-center mb-16">
+        <SectionHeader eyebrow="Recent Work" title="Custom Installs Across Central Florida" lead="From single-cab trucks to full show builds, every project on this page was completed in our Narcoossee Road shop or on-site for fleet customers across the Orlando area." />
+        <p class="text-navy-500 leading-relaxed mt-6 text-left sm:text-center">
+          The K-1 Custom portfolio covers everything we install daily: aftermarket head units with Apple CarPlay and Android Auto, subwoofer enclosures, amplifier racks, factory-clean wiring, micro-edge window tinting, multi-stage ceramic coatings, color-change vinyl wraps, paint protection film, remote start systems, and custom fiberglass builds. Most of the work shown here was completed for customers in Lake Nona, Kissimmee, Winter Park, St. Cloud, and the greater Orlando metro. If you see a build you want to replicate for your own ride, <a href="/contact/" class="text-gold-700 underline underline-offset-2 hover:text-navy">tell us about your vehicle</a> and we'll quote it.
+        </p>
+      </div>
+      <GalleryGrid />
+    </div>
+  </section>
+
+  <Parallax image={cta} overlay="bg-navy/85" height="min-h-[320px]">
+    <div class="text-center py-12">
+      <h2 class="font-serif text-3xl md:text-4xl text-white uppercase">Like What You See?</h2>
+      <p class="text-white/90 mt-3">Let's build your next project together.</p>
+      <div class="mt-8 flex flex-wrap justify-center gap-3">
+        <a href="/contact/" class="btn-gold">Start Your Project</a>
+        <a href="/services/" class="btn-outline">See All Services</a>
+      </div>
+    </div>
+  </Parallax>
+
+  <script type="application/ld+json" set:html={JSON.stringify(imageGallerySchema)} />
+</Base>

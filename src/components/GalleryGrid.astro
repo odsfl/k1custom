@@ -1,0 +1,36 @@
+---
+import { Image } from 'astro:assets';
+import { gallery } from '@/data/gallery';
+
+interface Props {
+  limit?: number;
+}
+const { limit } = Astro.props;
+const items = limit ? gallery.slice(0, limit) : gallery;
+---
+<div id="gallery-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
+  {items.map((item, i) => (
+    <a
+      href={item.src.src}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={`View full size: ${item.label} (opens in new tab)`}
+      class="gallery-item reveal group relative overflow-hidden bg-navy aspect-square block"
+      style={`transition-delay: ${(i % 8) * 60}ms`}
+    >
+      <Image
+        src={item.src}
+        alt={item.label}
+        widths={[300, 500, 700]}
+        sizes="(min-width: 1024px) 25vw, (min-width: 640px) 33vw, 50vw"
+        class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-navy/85 via-navy/0 to-navy/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-4" aria-hidden="true">
+        <div class="text-white">
+          <div class="text-[10px] uppercase tracking-[0.2em] text-gold-300 font-semibold">K-1 Custom</div>
+          <div class="text-sm mt-0.5">{item.label}</div>
+        </div>
+      </div>
+    </a>
+  ))}
+</div>

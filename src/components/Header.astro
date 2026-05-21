@@ -1,0 +1,85 @@
+---
+import { Image } from 'astro:assets';
+import logo from '@/assets/logo.png';
+import { nav, site } from '@/data/site';
+const path = Astro.url.pathname;
+const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWith(href));
+---
+<header class="sticky top-0 z-40 bg-navy-800/95 backdrop-blur border-b border-gold/30 shadow-lg">
+  <div class="container-x flex items-center justify-between h-20">
+    <a href="/" class="flex items-center group">
+      <Image src={logo} alt={site.name} width={200} height={80} loading="eager" class="h-14 md:h-16 w-auto" />
+    </a>
+    <nav aria-label="Primary" class="hidden lg:flex items-center gap-7">
+      {nav.map((item) => (
+        <a
+          href={item.href}
+          aria-current={isActive(item.href) ? 'page' : undefined}
+          class:list={[
+            'text-sm font-semibold tracking-wide uppercase transition-colors hover:text-gold-300',
+            isActive(item.href) ? 'text-gold-300' : 'text-white',
+          ]}
+        >
+          {item.label}
+        </a>
+      ))}
+      <a href={site.phoneHref} class="btn-gold !py-2.5 !px-5 text-sm">{site.phone}</a>
+    </nav>
+    <button
+      id="menu-btn"
+      type="button"
+      class="lg:hidden inline-flex items-center justify-center h-11 w-11 rounded text-white"
+      aria-label="Menu"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+    >
+      <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <path d="M4 7h16M4 12h16M4 17h16" stroke-linecap="round" />
+      </svg>
+    </button>
+  </div>
+  <div id="mobile-menu" class="lg:hidden hidden border-t border-gold/20 bg-navy-800">
+    <nav aria-label="Mobile" class="container-x flex flex-col py-4">
+      {nav.map((item) => (
+        <a
+          href={item.href}
+          aria-current={isActive(item.href) ? 'page' : undefined}
+          class:list={[
+            'py-3 text-base font-semibold uppercase tracking-wide border-b border-white/10',
+            isActive(item.href) ? 'text-gold-300' : 'text-white',
+          ]}
+        >
+          {item.label}
+        </a>
+      ))}
+      <a href={site.phoneHref} class="btn-gold mt-4">{site.phone}</a>
+    </nav>
+  </div>
+</header>
+<script>
+  const btn = document.getElementById('menu-btn') as HTMLButtonElement | null;
+  const menu = document.getElementById('mobile-menu');
+  if (btn && menu) {
+    const open = () => {
+      menu.classList.remove('hidden');
+      btn.setAttribute('aria-expanded', 'true');
+      const first = menu.querySelector<HTMLAnchorElement>('a');
+      first?.focus();
+    };
+    const close = (returnFocus = true) => {
+      menu.classList.add('hidden');
+      btn.setAttribute('aria-expanded', 'false');
+      if (returnFocus) btn.focus();
+    };
+    btn.addEventListener('click', () => {
+      menu.classList.contains('hidden') ? open() : close(false);
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !menu.classList.contains('hidden')) close();
+    });
+    // Close mobile menu when a link is clicked
+    menu.querySelectorAll('a').forEach((a) =>
+      a.addEventListener('click', () => close(false))
+    );
+  }
+</script>

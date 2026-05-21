@@ -1,0 +1,88 @@
+---
+import Base from '@/layouts/Base.astro';
+import Parallax from '@/components/Parallax.astro';
+import SectionHeader from '@/components/SectionHeader.astro';
+import ServiceCard from '@/components/ServiceCard.astro';
+import bg from '@/assets/images/gallery/project-14.jpg';
+import cta from '@/assets/images/gallery/project-28.jpg';
+import { services, fullServices, additionalServices } from '@/data/services';
+import { site } from '@/data/site';
+---
+<Base
+  title="Car Audio & Window Tint Services Orlando | K-1 Custom"
+  description="K-1 Custom in Orlando: car audio installation, window tinting, paint correction, ceramic coating, vehicle wraps, custom fiberglass, GPS, security, remote start and fleet services."
+  path="/services"
+  breadcrumbs={[{ name: 'Home', url: '/' }, { name: 'Our Services', url: '/services/' }]}
+>
+  <Parallax image={bg} overlay="bg-navy/85" height="min-h-[340px]">
+    <div class="text-center py-12">
+      <span class="eyebrow !text-gold-200">What We Do</span>
+      <h1 class="font-serif text-4xl md:text-5xl text-white uppercase">Our Services</h1>
+      <p class="text-white/90 mt-4 max-w-2xl mx-auto">
+        Professional installation of car audio, window tint, ceramic coating, wraps, security, and accessories. Whether it's a daily driver, a project build, or a fleet, we deliver clean installs and reliable performance.
+      </p>
+    </div>
+  </Parallax>
+
+  <section class="py-24">
+    <div class="container-x">
+      <SectionHeader eyebrow="Featured Work" title="Where We Shine" lead="Our most-requested services, dialed in by professional installers." />
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-14">
+        {services.map((s) => <ServiceCard {...s} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-24 bg-stone/50">
+    <div class="container-x max-w-5xl">
+      <SectionHeader eyebrow="Full Service Menu" title="Everything We Offer" />
+      <div class="mt-14 space-y-6">
+        {fullServices.map((s, i) => (
+          <article class="reveal bg-white p-8 md:p-10 rounded-sm border-l-4 border-gold-600 flex flex-col md:flex-row gap-6 md:gap-10 items-start">
+            <div class="font-serif text-5xl text-gold-600/50 leading-none flex-shrink-0">0{i + 1}</div>
+            <div>
+              <h3 class="font-serif text-2xl text-navy uppercase">{s.title}</h3>
+              <p class="text-navy-500 leading-relaxed mt-3">{s.body}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-24">
+    <div class="container-x">
+      <SectionHeader eyebrow="And More" title="Additional Capabilities" lead="If you don't see it here, just ask. Chances are we install it." />
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 mt-12 max-w-5xl mx-auto">
+        {additionalServices.map((m) => (
+          <div class="reveal bg-white border border-navy-50 px-5 py-4 text-center text-sm font-medium text-navy-600">{m}</div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Parallax image={cta} overlay="bg-navy/85" height="min-h-[360px]">
+    <div class="text-center py-12">
+      <h2 class="font-serif text-3xl md:text-4xl text-white uppercase">Ready to Build Your Ride?</h2>
+      <p class="text-white/90 mt-3 max-w-lg mx-auto">Tell us what you have in mind and we'll handle the rest, from product selection through final install.</p>
+      <div class="mt-8 flex flex-wrap justify-center gap-3">
+        <a href="/contact/" class="btn-gold">Request a Free Quote</a>
+        <a href="/gallery/" class="btn-outline">View Past Projects</a>
+      </div>
+    </div>
+  </Parallax>
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@graph': fullServices.map((s, i) => ({
+      '@type': 'Service',
+      '@id': `${site.url}/services/#service-${i + 1}`,
+      name: s.title,
+      serviceType: s.title,
+      description: s.body,
+      url: `${site.url}/services/`,
+      provider: { '@id': `${site.url}/#business` },
+      areaServed: site.serviceArea.map((c) => ({ '@type': 'City', name: c })),
+    })),
+  })} />
+</Base>

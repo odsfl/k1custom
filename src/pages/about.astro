@@ -1,0 +1,84 @@
+---
+import Base from '@/layouts/Base.astro';
+import SectionHeader from '@/components/SectionHeader.astro';
+import Parallax from '@/components/Parallax.astro';
+import { Image } from 'astro:assets';
+import about1 from '@/assets/images/gallery/project-03.jpg';
+import about2 from '@/assets/images/gallery/project-18.jpg';
+import bg from '@/assets/images/gallery/project-22.jpg';
+import { faqs } from '@/data/faqs';
+import { site } from '@/data/site';
+---
+<Base
+  title="About K-1 Custom | Orlando Car Audio Since 2014"
+  description="K-1 Custom is a family-owned Orlando car audio and customization shop founded in 2014. Professional installs of audio/video, window tint, ceramic coating, wraps and accessories with a lifetime workmanship warranty."
+  path="/about"
+  breadcrumbs={[{ name: 'Home', url: '/' }, { name: 'About Us', url: '/about/' }]}
+>
+  <Parallax image={bg} overlay="bg-navy/85" height="min-h-[320px]">
+    <div class="text-center py-12">
+      <span class="eyebrow !text-gold-200">About Us</span>
+      <h1 class="font-serif text-4xl md:text-5xl text-white uppercase">Orlando Car Audio &amp; Customization Since {site.foundingYear}</h1>
+    </div>
+  </Parallax>
+
+  <section class="py-24">
+    <div class="container-x grid lg:grid-cols-2 gap-14 items-center">
+      <div class="reveal grid grid-cols-2 gap-4">
+        <Image src={about1} alt="K-1 Custom Orlando install bay with vehicle on lift" widths={[300, 500]} class="rounded-sm aspect-[4/5] object-cover" />
+        <Image src={about2} alt="Finished custom audio install with subwoofer and amp by K-1 Custom" widths={[300, 500]} class="rounded-sm aspect-[4/5] object-cover mt-10" />
+      </div>
+      <div class="reveal">
+        <span class="eyebrow">Who We Are</span>
+        <h2 class="section-title">About K-1 Custom</h2>
+        <div class="gold-rule"></div>
+        <p class="text-navy-500 leading-relaxed">
+          K-1 Custom has been professionally installing custom car stereo systems and vehicle upgrades for Orlando drivers since {site.foundingYear}. Located at 6647 Narcoossee Rd in the Lake Nona corridor of East Orlando, our team takes pride in delivering clean, factory-quality installs of audio and video systems, window tint, car alarms and security, remote start, ceramic coatings, vehicle wraps, and a full line of auto accessories.
+        </p>
+        <p class="text-navy-500 leading-relaxed mt-5">
+          Our goal is simple: combine fair prices with excellent customer service, treat every vehicle and every customer as a unique project, and back every professional installation with a lifetime workmanship warranty. That's how we've built a loyal Orlando following across Lake Nona, Kissimmee, St. Cloud, Winter Park, and the rest of central Florida.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href="/contact/" class="btn-gold">Contact Us</a>
+          <a href="/services/" class="btn-outline-navy">View Our Services</a>
+          <a href="/gallery/" class="btn-outline-navy">See Our Work</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-24 bg-stone/50">
+    <div class="container-x max-w-3xl">
+      <SectionHeader eyebrow="FAQ" title="Frequently Asked Questions" />
+      <div class="mt-12 space-y-3">
+        {faqs.map((f) => (
+          <details class="reveal group bg-white border border-navy-50 rounded-sm overflow-hidden">
+            <summary class="cursor-pointer list-none px-6 py-5 flex items-center justify-between font-serif text-lg text-navy hover:text-gold-700 transition">
+              <span>{f.q}</span>
+              <svg aria-hidden="true" class="w-5 h-5 transition-transform group-open:rotate-45 flex-shrink-0 ml-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg>
+            </summary>
+            <div class="px-6 pb-5 text-navy-500 leading-relaxed">{f.a}</div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Parallax image={about2} overlay="bg-navy/85" height="min-h-[360px]">
+    <div class="text-center py-12">
+      <h2 class="font-serif text-3xl md:text-4xl text-white uppercase">Looking for a Custom Sound System or Window Tint?</h2>
+      <p class="text-white/90 mt-3 max-w-lg mx-auto">Come see our selection or request a free quote. We'll set up a quick consultation that fits your schedule.</p>
+      <a href="/contact/" class="btn-gold mt-8">Get Started</a>
+    </div>
+  </Parallax>
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
+  })} />
+</Base>
