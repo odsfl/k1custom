@@ -79,7 +79,7 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
     return Response.json({ error: 'Submission too large.' }, { status: 400 });
   }
 
-  const to = env.CONTACT_TO_EMAIL || 'info@k-1custom.com';
+  const to = env.CONTACT_TO_EMAIL || 'konecustom@gmail.com';
   const from = env.CONTACT_FROM_EMAIL || 'K-1 Custom Website <onboarding@resend.dev>';
   const subject = `New inquiry from ${stripCRLF(name)} - k-1custom.com`;
 

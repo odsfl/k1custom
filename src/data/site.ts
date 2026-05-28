@@ -5,7 +5,7 @@ export const site = {
   url: 'https://www.k-1custom.com',
   phone: '(407) 440-3321',
   phoneHref: 'tel:+14074403321',
-  email: 'info@k-1custom.com',
+  email: 'konecustom@gmail.com',
   address: {
     street: '6647 Narcoossee Rd Suite 120',
     city: 'Orlando',
