@@ -1,0 +1,197 @@
+---
+import Base from '@/layouts/Base.astro';
+import Parallax from '@/components/Parallax.astro';
+import SectionHeader from '@/components/SectionHeader.astro';
+import ServiceCard from '@/components/ServiceCard.astro';
+import ContactInfoStrip from '@/components/ContactInfoStrip.astro';
+import GalleryGrid from '@/components/GalleryGrid.astro';
+import Testimonials from '@/components/Testimonials.astro';
+import ContactForm from '@/components/ContactForm.astro';
+import { Image } from 'astro:assets';
+import hero from '@/assets/images/gallery/project-12.jpg';
+import bg1 from '@/assets/images/gallery/project-20.jpg';
+import bg2 from '@/assets/images/gallery/project-33.jpg';
+import welcomeImg from '@/assets/images/gallery/project-05.jpg';
+import { services, additionalServices } from '@/data/services.es';
+import { site } from '@/data/site';
+---
+<Base
+  title="Audio para Autos y Polarizado en Orlando FL"
+  description="Audio para autos, polarizado, recubrimiento cerámico, vinilos y accesorios en Orlando, FL. Negocio familiar desde 2014. Garantía de por vida. Financiamiento disponible."
+  path="/es/"
+  locale="es"
+  breadcrumbs={[{ name: 'Inicio', url: '/es/' }]}
+>
+  <Parallax image={hero} height="min-h-[640px] md:min-h-[720px]" overlay="bg-gradient-to-b from-navy/85 via-navy/80 to-navy/85">
+    <div class="max-w-3xl py-24">
+      <span class="eyebrow !text-gold-200">Sistemas de Audio Personalizados y Más en Orlando, FL</span>
+      <h1 class="font-serif text-5xl sm:text-6xl md:text-7xl text-white leading-[1.05] mt-2 uppercase">
+        Sistemas de Audio Personalizados <span class="text-gold-300">y Más</span>
+      </h1>
+      <p class="mt-6 text-white/90 text-lg max-w-2xl leading-relaxed">
+        La tienda de confianza en Orlando para audio y video para autos, polarizado de ventanas, recubrimiento cerámico, vinilos, fibra de vidrio y accesorios automotrices. Cada instalación respaldada por garantía de por vida en la mano de obra.
+      </p>
+      <div class="mt-9 flex flex-wrap gap-4">
+        <a href="/es/contact/" class="btn-gold">Pide una Cotización Gratis</a>
+        <a href="/es/gallery/" class="btn-outline">Ver Nuestro Trabajo</a>
+      </div>
+    </div>
+  </Parallax>
+
+  <ContactInfoStrip />
+
+  <section class="py-24">
+    <div class="container-x grid lg:grid-cols-2 gap-14 items-center">
+      <div class="reveal">
+        <span class="eyebrow">Quiénes Somos</span>
+        <h2 class="section-title">Bienvenido a K-1 Custom</h2>
+        <div class="gold-rule"></div>
+        <p class="lead">
+          K-1 Custom es una tienda local de audio y personalización automotriz, atendiendo a los conductores de Orlando desde {site.foundingYear} con instalaciones profesionales de sistemas de audio y video, polarizado, recubrimiento cerámico, vinilos y accesorios automotrices.
+        </p>
+        <p class="text-navy-500 mt-4 leading-relaxed">
+          Cada vehículo es diferente y cada cliente también. Nuestra meta es combinar precios justos con el tipo de servicio que hace que la gente regrese, y respaldar el trabajo con garantía de por vida en la mano de obra para que salgas con total confianza.
+        </p>
+        <a href="/es/about/" class="btn-outline-navy mt-8">Más Sobre Nosotros</a>
+      </div>
+      <div class="reveal relative">
+        <Image src={welcomeImg} alt="Instalación personalizada de audio para auto completada en K-1 Custom en Orlando, FL" widths={[600, 900, 1200]} sizes="(min-width: 1024px) 50vw, 100vw" class="rounded-sm shadow-2xl aspect-[4/5] object-cover" />
+        <div class="absolute -bottom-6 -left-6 bg-navy text-gold-300 px-8 py-6 hidden sm:block">
+          <div class="font-serif text-4xl leading-none">{site.yearsExperience}+</div>
+          <div class="text-xs uppercase tracking-[0.18em] mt-1 text-white">Años en Orlando</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-24 bg-stone/50">
+    <div class="container-x">
+      <SectionHeader eyebrow="Lo Que Hacemos" title="Explora Nuestros Servicios" lead="Desde construcciones de audio hasta recubrimientos cerámicos, nuestro equipo personaliza, instala y protege con ojo de artesano y cuidado de conductor." />
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-14">
+        {services.map((s) => <ServiceCard {...s} href="/es/services/" />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-24">
+    <div class="container-x">
+      <SectionHeader eyebrow="Capacidades Completas" title="Lo Hacemos Todo" lead="Cualquier mejora que tengas en mente, lo más probable es que ya esté en nuestro menú." />
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 mt-12 max-w-5xl mx-auto">
+        {additionalServices.map((m) => (
+          <div class="reveal bg-white border border-navy-50 px-5 py-4 text-center text-sm font-medium text-navy-600">{m}</div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Parallax image={bg1} overlay="bg-navy/85" height="py-24">
+    <div class="py-12">
+      <SectionHeader light eyebrow="Por Qué K-1" title="Por Qué Elegir K-1 Custom" lead="Cinco razones por las que los conductores de Orlando confían en nosotros." />
+      <div class="grid md:grid-cols-2 lg:grid-cols-5 gap-5 mt-14">
+        {[
+          { t: 'Garantía de Por Vida', d: 'Cada instalación profesional que realizamos está respaldada de por vida.' },
+          { t: 'Negocio Local', d: 'Familia operando en Orlando, atendiendo a los conductores del centro de Florida.' },
+          { t: 'Mejores Marcas', d: 'Sony, Pioneer, DB Drive y otras marcas líderes de la industria.' },
+          { t: 'Precios Honestos', d: 'Cotizaciones claras, sin sorpresas, sin presión.' },
+          { t: 'Financiamiento', d: 'Opciones de Snap Finance y Acima Credit para cualquier presupuesto.' },
+        ].map((c) => (
+          <div class="reveal bg-white/5 backdrop-blur-sm border border-white/10 p-6 rounded-sm hover:bg-white/10 transition">
+            <div class="w-10 h-10 rounded-full bg-gold-300/20 text-gold-300 flex items-center justify-center mb-4">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <h3 class="text-white font-serif text-lg uppercase tracking-wide">{c.t}</h3>
+            <p class="text-white/80 text-sm mt-2 leading-relaxed">{c.d}</p>
+          </div>
+        ))}
+      </div>
+      <div class="grid grid-cols-3 gap-6 mt-16 max-w-3xl mx-auto text-center">
+        <div class="reveal">
+          <div class="font-serif text-4xl md:text-5xl text-gold-300">{site.yearsExperience}+</div>
+          <div class="text-xs uppercase tracking-[0.18em] text-white/90 mt-2">Años de Experiencia</div>
+        </div>
+        <div class="reveal">
+          <div class="font-serif text-4xl md:text-5xl text-gold-300">{site.vehiclesCustomized.toLocaleString()}+</div>
+          <div class="text-xs uppercase tracking-[0.18em] text-white/90 mt-2">Vehículos Personalizados</div>
+        </div>
+        <div class="reveal">
+          <div class="font-serif text-4xl md:text-5xl text-gold-300">De Por Vida</div>
+          <div class="text-xs uppercase tracking-[0.18em] text-white/90 mt-2">Garantía en Mano de Obra</div>
+        </div>
+      </div>
+      <div class="text-center mt-12">
+        <a href="/es/contact/" class="btn-gold">Pide Tu Cotización Gratis</a>
+      </div>
+    </div>
+  </Parallax>
+
+  <section class="py-24">
+    <div class="container-x max-w-4xl text-center">
+      <SectionHeader eyebrow="Nuestra Promesa" title="La Garantía K-1 Custom" lead="Productos de calidad, instalación experta y garantía de por vida en la mano de obra en cada instalación profesional. Si algo que instalamos llegara a tener un problema de mano de obra, tráelo y lo resolvemos." />
+      <div class="mt-10 flex flex-wrap justify-center gap-3">
+        <a href="/es/services/" class="btn-gold">Ver Todos los Servicios</a>
+        <a href="/es/testimonials/" class="btn-outline-navy">Leer Reseñas</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-stone/50">
+    <div class="container-x max-w-4xl text-center">
+      <span class="eyebrow">Financiamiento Fácil</span>
+      <h2 class="font-serif text-3xl md:text-4xl text-navy uppercase">Sal Hoy, Paga a Plazos</h2>
+      <div class="gold-rule mx-auto"></div>
+      <p class="lead">
+        Trabajamos con Snap Finance y Acima Credit para que dividas tu proyecto en pagos mensuales fáciles. Aprobación rápida, no necesitas crédito perfecto.
+      </p>
+      <div class="mt-8 grid grid-cols-2 gap-6 max-w-lg mx-auto">
+        <div class="bg-white border border-navy-50 p-6 rounded-sm">
+          <div class="font-serif text-2xl text-navy">Snap Finance</div>
+          <div class="text-xs uppercase tracking-wide text-navy-500 mt-1">Arrendamiento con Opción a Compra</div>
+        </div>
+        <div class="bg-white border border-navy-50 p-6 rounded-sm">
+          <div class="font-serif text-2xl text-navy">Acima Credit</div>
+          <div class="text-xs uppercase tracking-wide text-navy-500 mt-1">Pagos Flexibles</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-24">
+    <div class="container-x">
+      <SectionHeader eyebrow="Nuestro Trabajo" title="Galería de Fotos" lead="Una selección de instalaciones recientes desde el piso de nuestra tienda en Orlando." />
+      <div class="mt-12">
+        <GalleryGrid limit={8} />
+      </div>
+      <div class="text-center mt-12">
+        <a href="/es/gallery/" class="btn-outline-navy">Ver Galería Completa</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-24 bg-stone/50">
+    <div class="container-x">
+      <SectionHeader eyebrow="Reseñas" title="Lo Que Dicen Nuestros Clientes" />
+      <div class="mt-14">
+        <Testimonials limit={6} />
+      </div>
+      <div class="text-center mt-12">
+        <a href="/es/testimonials/" class="btn-outline-navy">Leer Más Reseñas</a>
+      </div>
+    </div>
+  </section>
+
+  <Parallax image={bg2} overlay="bg-navy/85" height="py-24">
+    <div class="grid lg:grid-cols-2 gap-12 items-center py-12">
+      <div>
+        <span class="eyebrow !text-gold-200">Hablemos</span>
+        <h2 class="font-serif text-4xl md:text-5xl text-white leading-tight uppercase">¿Cómo Podemos Ayudarte?</h2>
+        <div class="gold-rule"></div>
+        <p class="text-white/90 text-lg leading-relaxed max-w-lg">
+          Cuéntanos sobre tu vehículo y lo que tienes en mente. Te contactamos con un plan personalizado y una cotización honesta sin presión.
+        </p>
+      </div>
+      <div class="bg-white p-7 md:p-10 rounded-sm shadow-2xl">
+        <ContactForm />
+      </div>
+    </div>
+  </Parallax>
+</Base>

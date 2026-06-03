@@ -1,0 +1,86 @@
+---
+import Base from '@/layouts/Base.astro';
+import SectionHeader from '@/components/SectionHeader.astro';
+import Parallax from '@/components/Parallax.astro';
+import { Image } from 'astro:assets';
+import about1 from '@/assets/images/gallery/project-03.jpg';
+import about2 from '@/assets/images/gallery/project-18.jpg';
+import bg from '@/assets/images/gallery/project-22.jpg';
+import { faqs } from '@/data/faqs.es';
+import { site } from '@/data/site';
+---
+<Base
+  title="Sobre K-1 Custom | Audio para Autos en Orlando Desde 2014"
+  description="K-1 Custom es una tienda familiar de audio para autos y personalización en Orlando, fundada en 2014. Instalación profesional con garantía de por vida."
+  path="/es/about"
+  locale="es"
+  breadcrumbs={[{ name: 'Inicio', url: '/es/' }, { name: 'Nosotros', url: '/es/about/' }]}
+>
+  <Parallax image={bg} overlay="bg-navy/85" height="min-h-[320px]">
+    <div class="text-center py-12">
+      <span class="eyebrow !text-gold-200">Nosotros</span>
+      <h1 class="font-serif text-4xl md:text-5xl text-white uppercase">Audio y Personalización Automotriz en Orlando Desde {site.foundingYear}</h1>
+    </div>
+  </Parallax>
+
+  <section class="py-24">
+    <div class="container-x grid lg:grid-cols-2 gap-14 items-center">
+      <div class="reveal grid grid-cols-2 gap-4">
+        <Image src={about1} alt="Bahía de instalación de K-1 Custom Orlando con vehículo en elevador" widths={[300, 500]} class="rounded-sm aspect-[4/5] object-cover" />
+        <Image src={about2} alt="Instalación de audio personalizado terminada con subwoofer y amplificador por K-1 Custom" widths={[300, 500]} class="rounded-sm aspect-[4/5] object-cover mt-10" />
+      </div>
+      <div class="reveal">
+        <span class="eyebrow">Quiénes Somos</span>
+        <h2 class="section-title">Sobre K-1 Custom</h2>
+        <div class="gold-rule"></div>
+        <p class="text-navy-500 leading-relaxed">
+          K-1 Custom ha estado instalando profesionalmente sistemas de audio personalizados y mejoras para vehículos para los conductores de Orlando desde {site.foundingYear}. Ubicados en 6647 Narcoossee Rd en el corredor Lake Nona del este de Orlando, nuestro equipo se enorgullece de entregar instalaciones limpias y con acabado de fábrica de audio y video, polarizado, alarmas y seguridad, encendido remoto, recubrimientos cerámicos, vinilos y una línea completa de accesorios.
+        </p>
+        <p class="text-navy-500 leading-relaxed mt-5">
+          Nuestra meta es simple: combinar precios justos con un excelente servicio al cliente, tratar cada vehículo y cada cliente como un proyecto único, y respaldar cada instalación profesional con garantía de por vida en la mano de obra. Así es como hemos construido una clientela leal en Orlando, Lake Nona, Kissimmee, St. Cloud, Winter Park y el resto del centro de Florida.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href="/es/contact/" class="btn-gold">Contáctanos</a>
+          <a href="/es/services/" class="btn-outline-navy">Ver Nuestros Servicios</a>
+          <a href="/es/gallery/" class="btn-outline-navy">Ver Nuestro Trabajo</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-24 bg-stone/50">
+    <div class="container-x max-w-3xl">
+      <SectionHeader eyebrow="Preguntas Frecuentes" title="Preguntas Frecuentes" />
+      <div class="mt-12 space-y-3">
+        {faqs.map((f) => (
+          <details class="reveal group bg-white border border-navy-50 rounded-sm overflow-hidden">
+            <summary class="cursor-pointer list-none px-6 py-5 flex items-center justify-between font-serif text-lg text-navy hover:text-gold-700 transition">
+              <span>{f.q}</span>
+              <svg aria-hidden="true" class="w-5 h-5 transition-transform group-open:rotate-45 flex-shrink-0 ml-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg>
+            </summary>
+            <div class="px-6 pb-5 text-navy-500 leading-relaxed">{f.a}</div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Parallax image={about2} overlay="bg-navy/85" height="min-h-[360px]">
+    <div class="text-center py-12">
+      <h2 class="font-serif text-3xl md:text-4xl text-white uppercase">¿Buscas un Sistema de Audio o Polarizado?</h2>
+      <p class="text-white/90 mt-3 max-w-lg mx-auto">Ven a ver nuestra selección o pide una cotización gratis. Te agendamos una consulta rápida que se ajuste a tu horario.</p>
+      <a href="/es/contact/" class="btn-gold mt-8">Empezar</a>
+    </div>
+  </Parallax>
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    inLanguage: 'es',
+    mainEntity: faqs.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
+  })} />
+</Base>

@@ -1,0 +1,66 @@
+---
+import Base from '@/layouts/Base.astro';
+import Parallax from '@/components/Parallax.astro';
+import SectionHeader from '@/components/SectionHeader.astro';
+import GalleryGrid from '@/components/GalleryGrid.astro';
+import bg from '@/assets/images/gallery/project-07.jpg';
+import cta from '@/assets/images/gallery/project-19.jpg';
+import { gallery } from '@/data/gallery';
+import { site } from '@/data/site';
+
+const imageGallerySchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ImageGallery',
+  '@id': `${site.url}/es/gallery/#gallery`,
+  name: 'Galería de Proyectos K-1 Custom',
+  url: `${site.url}/es/gallery/`,
+  inLanguage: 'es',
+  image: gallery.slice(0, 20).map((g) => ({
+    '@type': 'ImageObject',
+    contentUrl: new URL(g.src.src, site.url).toString(),
+    caption: g.label,
+  })),
+};
+---
+<Base
+  title="Galería | Proyectos de Audio y Personalización en Orlando"
+  description="Instalaciones recientes de audio para autos, polarizado, recubrimientos cerámicos, vinilos y construcciones personalizadas por K-1 Custom en Orlando, FL."
+  path="/es/gallery"
+  locale="es"
+  breadcrumbs={[{ name: 'Inicio', url: '/es/' }, { name: 'Galería', url: '/es/gallery/' }]}
+>
+  <Parallax image={bg} overlay="bg-navy/85" height="min-h-[340px]">
+    <div class="text-center py-12">
+      <span class="eyebrow !text-gold-200">Nuestro Portafolio</span>
+      <h1 class="font-serif text-4xl md:text-5xl text-white uppercase">Galería de Fotos</h1>
+      <p class="text-white/90 mt-4 max-w-2xl mx-auto">
+        Una selección de construcciones recientes de audio, polarizado, recubrimientos cerámicos, vinilos e instalaciones personalizadas desde el piso de nuestra tienda en Orlando.
+      </p>
+    </div>
+  </Parallax>
+
+  <section class="py-24">
+    <div class="container-x">
+      <div class="max-w-3xl mx-auto text-center mb-16">
+        <SectionHeader eyebrow="Trabajo Reciente" title="Instalaciones Personalizadas en el Centro de Florida" lead="Desde camionetas hasta construcciones de exhibición, cada proyecto en esta página fue terminado en nuestra tienda en Narcoossee Road o en sitio para clientes de flotillas alrededor de Orlando." />
+        <p class="text-navy-500 leading-relaxed mt-6 text-left sm:text-center">
+          El portafolio de K-1 Custom cubre todo lo que instalamos día a día: estéreos aftermarket con Apple CarPlay y Android Auto, cajones de subwoofer, racks de amplificador, cableado limpio de fábrica, polarizado micro-edge, recubrimientos cerámicos en múltiples etapas, vinilos cambia-color, película protectora de pintura, encendido remoto y construcciones de fibra de vidrio. La mayoría del trabajo aquí mostrado fue completado para clientes en Lake Nona, Kissimmee, Winter Park, St. Cloud y el área metropolitana de Orlando. Si ves una construcción que quieres replicar para tu auto, <a href="/es/contact/" class="text-gold-800 underline underline-offset-2 hover:text-navy">cuéntanos sobre tu vehículo</a> y te lo cotizamos.
+        </p>
+      </div>
+      <GalleryGrid />
+    </div>
+  </section>
+
+  <Parallax image={cta} overlay="bg-navy/85" height="min-h-[320px]">
+    <div class="text-center py-12">
+      <h2 class="font-serif text-3xl md:text-4xl text-white uppercase">¿Te Gusta Lo Que Ves?</h2>
+      <p class="text-white/90 mt-3">Construyamos tu próximo proyecto juntos.</p>
+      <div class="mt-8 flex flex-wrap justify-center gap-3">
+        <a href="/es/contact/" class="btn-gold">Empieza Tu Proyecto</a>
+        <a href="/es/services/" class="btn-outline">Ver Todos los Servicios</a>
+      </div>
+    </div>
+  </Parallax>
+
+  <script type="application/ld+json" set:html={JSON.stringify(imageGallerySchema)} />
+</Base>

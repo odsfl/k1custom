@@ -1,12 +1,26 @@
 ---
 import { Image } from 'astro:assets';
 import logo from '@/assets/logo.png';
-import { nav, site } from '@/data/site';
+import { site } from '@/data/site';
+import { t, type Locale } from '@/i18n';
+
+interface Props { locale: Locale; }
+const { locale } = Astro.props;
+const tr = t(locale);
+
+const nav = [
+  { href: tr.paths.home, label: tr.nav.home },
+  { href: tr.paths.about, label: tr.nav.about },
+  { href: tr.paths.services, label: tr.nav.services },
+  { href: tr.paths.gallery, label: tr.nav.gallery },
+  { href: tr.paths.testimonials, label: tr.nav.testimonials },
+  { href: tr.paths.contact, label: tr.nav.contact },
+];
 const year = new Date().getFullYear();
 const socials = [
-  { url: site.social.facebook, label: 'Visit K-1 Custom on Facebook', icon: 'fb' },
-  { url: site.social.instagram, label: 'Visit K-1 Custom on Instagram', icon: 'ig' },
-  { url: site.social.google, label: 'See K-1 Custom on Google Business', icon: 'g' },
+  { url: site.social.facebook, label: tr.social.fb, icon: 'fb' },
+  { url: site.social.instagram, label: tr.social.ig, icon: 'ig' },
+  { url: site.social.google, label: tr.social.google, icon: 'g' },
 ].filter((s): s is { url: string; label: string; icon: string } => typeof s.url === 'string' && s.url.length > 0);
 ---
 <footer class="bg-navy-700 text-white/85 mt-24">
@@ -15,10 +29,8 @@ const socials = [
       <div class="mb-5 inline-block">
         <Image src={logo} alt={`${site.name} logo`} width={220} height={80} class="h-16 w-auto" />
       </div>
-      <div class="text-[10px] uppercase tracking-[0.2em] text-gold-300 font-semibold mb-4">Orlando, FL · Since {site.foundingYear}</div>
-      <p class="text-sm leading-relaxed text-white/85 max-w-md">
-        K-1 Custom is Orlando's go-to shop for car audio, window tinting, ceramic coatings, vehicle wraps, and custom auto accessories. Family-run, professionally installed, and backed by a lifetime workmanship warranty.
-      </p>
+      <div class="text-[10px] uppercase tracking-[0.2em] text-gold-300 font-semibold mb-4">{tr.footerLocation} {site.foundingYear}</div>
+      <p class="text-sm leading-relaxed text-white/85 max-w-md">{tr.footerBlurb}</p>
       {socials.length > 0 && (
         <div class="flex items-center gap-3 mt-6">
           {socials.map((s) => (
@@ -44,8 +56,8 @@ const socials = [
       )}
     </div>
 
-    <nav aria-label="Footer">
-      <h2 class="text-white font-serif text-xl tracking-wide uppercase mb-4">Quick Links</h2>
+    <nav aria-label={tr.ui.footer}>
+      <h2 class="text-white font-serif text-xl tracking-wide uppercase mb-4">{tr.ui.quickLinks}</h2>
       <ul class="space-y-2 text-sm">
         {nav.map((n) => (
           <li><a href={n.href} class="hover:text-gold-300 transition">{n.label}</a></li>
@@ -54,18 +66,14 @@ const socials = [
     </nav>
 
     <div>
-      <h2 class="text-white font-serif text-xl tracking-wide uppercase mb-4">Get in Touch</h2>
+      <h2 class="text-white font-serif text-xl tracking-wide uppercase mb-4">{tr.ui.getInTouch}</h2>
       <ul class="space-y-3 text-sm">
-        <li>
-          <a href={site.phoneHref} class="hover:text-gold-300 transition">{site.phone}</a>
-        </li>
-        <li>
-          <a href={`mailto:${site.email}`} class="hover:text-gold-300 transition break-all">{site.email}</a>
-        </li>
+        <li><a href={site.phoneHref} class="hover:text-gold-300 transition">{site.phone}</a></li>
+        <li><a href={`mailto:${site.email}`} class="hover:text-gold-300 transition break-all">{site.email}</a></li>
         <li>{site.address.street}<br />{site.address.city}, {site.address.region} {site.address.postal}</li>
         <li class="pt-2 border-t border-white/10">
-          <div class="text-white/85">{site.hours.weekdays}</div>
-          <div class="text-white/85">{site.hours.weekend}</div>
+          <div class="text-white/85">{tr.hours.weekdays}</div>
+          <div class="text-white/85">{tr.hours.weekend}</div>
         </li>
       </ul>
     </div>
@@ -73,9 +81,9 @@ const socials = [
 
   <div class="border-t border-white/10">
     <div class="container-x py-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-white/85">
-      <div>© {year} {site.name}. All rights reserved.</div>
+      <div>© {year} {site.name}. {tr.ui.rights}</div>
       <div>
-        Web Design by <a href="https://oceanfrontdigitalsolutions.com" target="_blank" rel="noopener noreferrer" class="text-gold-300 hover:text-white transition">Oceanfront Digital Solutions</a>
+        {tr.ui.webDesignBy} <a href="https://oceanfrontdigitalsolutions.com" target="_blank" rel="noopener noreferrer" class="text-gold-300 hover:text-white transition">Oceanfront Digital Solutions</a>
       </div>
     </div>
   </div>
