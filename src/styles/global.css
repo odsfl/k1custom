@@ -16,14 +16,14 @@
 
 @layer base {
   :focus-visible {
-    outline: 2px solid #3FD025;
+    outline: 2px solid #1FA8FF;
     outline-offset: 3px;
     border-radius: 2px;
   }
   a:focus-visible,
   button:focus-visible,
   [role="button"]:focus-visible {
-    outline: 3px solid #3FD025;
+    outline: 3px solid #1FA8FF;
     outline-offset: 3px;
   }
 }
