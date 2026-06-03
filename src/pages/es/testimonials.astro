@@ -1,0 +1,58 @@
+---
+import Base from '@/layouts/Base.astro';
+import Parallax from '@/components/Parallax.astro';
+import Testimonials from '@/components/Testimonials.astro';
+import bg from '@/assets/images/gallery/project-09.jpg';
+import cta from '@/assets/images/gallery/project-27.jpg';
+import { testimonials } from '@/data/testimonials';
+import { site } from '@/data/site';
+
+const reviewSchema = {
+  '@context': 'https://schema.org',
+  '@graph': testimonials.map((t) => ({
+    '@type': 'Review',
+    itemReviewed: { '@id': `${site.url}/#business` },
+    author: { '@type': 'Person', name: t.name },
+    reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
+    reviewBody: t.quote,
+  })),
+};
+---
+<Base
+  title="Reseñas | K-1 Custom Orlando Audio y Polarizado"
+  description="Reseñas reales de clientes de K-1 Custom en Orlando, FL. Mira lo que dicen los conductores sobre nuestras instalaciones de audio, polarizado, recubrimiento y servicio."
+  path="/es/testimonials"
+  locale="es"
+  breadcrumbs={[{ name: 'Inicio', url: '/es/' }, { name: 'Reseñas', url: '/es/testimonials/' }]}
+>
+  <Parallax image={bg} overlay="bg-navy/85" height="min-h-[340px]">
+    <div class="text-center py-12">
+      <span class="eyebrow !text-gold-200">Reseñas</span>
+      <h1 class="font-serif text-4xl md:text-5xl text-white uppercase">Reseñas de K-1 Custom — Lo Que Dicen los Conductores de Orlando</h1>
+      <p class="text-white/90 mt-4 max-w-2xl mx-auto">
+        Clientes que regresan, recomendaciones de boca en boca y reseñas de 5 estrellas. Aquí una muestra de lo que dicen los conductores de Orlando sobre K-1 Custom.
+      </p>
+    </div>
+  </Parallax>
+
+  <section class="py-24">
+    <div class="container-x">
+      <Testimonials />
+      <p class="mt-12 text-center text-sm text-navy-500">
+        ¿Quieres leer más reseñas verificadas?
+        {site.social.google && (
+          <a href={site.social.google} target="_blank" rel="noopener noreferrer" class="text-gold-800 underline underline-offset-2 hover:text-navy">Búscanos en Google Business</a>
+        )}
+      </p>
+    </div>
+  </section>
+
+  <Parallax image={cta} overlay="bg-navy/85" height="min-h-[320px]">
+    <div class="text-center py-12">
+      <h2 class="font-serif text-3xl md:text-4xl text-white uppercase">¿Listo para Ser Nuestro Próximo Cliente Feliz?</h2>
+      <a href="/es/contact/" class="btn-gold mt-8">Empezar</a>
+    </div>
+  </Parallax>
+
+  <script type="application/ld+json" set:html={JSON.stringify(reviewSchema)} />
+</Base>

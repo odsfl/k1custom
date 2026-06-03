@@ -1,0 +1,78 @@
+---
+import Base from '@/layouts/Base.astro';
+import Parallax from '@/components/Parallax.astro';
+import ContactForm from '@/components/ContactForm.astro';
+import ContactInfoStrip from '@/components/ContactInfoStrip.astro';
+import bg from '@/assets/images/gallery/project-11.jpg';
+import { site } from '@/data/site';
+---
+<Base
+  title="Contacta a K-1 Custom | Tienda de Audio y Polarizado en Orlando"
+  description="Contacta a K-1 Custom en Orlando, FL. Llama al (407) 440-3321 o envía un mensaje para una cotización gratis de audio, polarizado, recubrimiento cerámico, vinilos y accesorios."
+  path="/es/contact"
+  locale="es"
+  breadcrumbs={[{ name: 'Inicio', url: '/es/' }, { name: 'Contacto', url: '/es/contact/' }]}
+>
+  <Parallax image={bg} overlay="bg-navy/85" height="min-h-[340px]">
+    <div class="text-center py-12">
+      <span class="eyebrow !text-gold-200">Contáctanos</span>
+      <h1 class="font-serif text-4xl md:text-5xl text-white uppercase">Contacta a K-1 Custom</h1>
+      <p class="text-white/90 mt-4 max-w-2xl mx-auto">
+        ¿Tienes una pregunta sobre nuestros productos o servicios? ¿Quieres hablar con un especialista en audio o agendar una cita? Llámanos o envíanos un mensaje y te respondemos de inmediato.
+      </p>
+    </div>
+  </Parallax>
+
+  <ContactInfoStrip />
+
+  <section class="py-24">
+    <div class="container-x grid lg:grid-cols-5 gap-12">
+      <div class="lg:col-span-2 reveal">
+        <span class="eyebrow">Visita la Tienda</span>
+        <h2 class="section-title !text-3xl">Pasa, llama o envía un mensaje.</h2>
+        <div class="gold-rule"></div>
+        <p class="text-navy-500 leading-relaxed">
+          La mejor manera de planear una instalación personalizada es en persona. Trae tu vehículo durante el horario de la tienda y te enseñamos opciones, precios y lo que es posible para tu proyecto.
+        </p>
+        <dl class="mt-8 space-y-4 text-navy-600">
+          <div>
+            <dt class="text-xs uppercase tracking-[0.18em] text-gold-800 font-semibold">Dirección</dt>
+            <dd class="mt-1">{site.address.street}, {site.address.city}, {site.address.region} {site.address.postal}</dd>
+          </div>
+          <div>
+            <dt class="text-xs uppercase tracking-[0.18em] text-gold-800 font-semibold">Teléfono</dt>
+            <dd class="mt-1"><a href={site.phoneHref} class="hover:text-gold-800">{site.phone}</a></dd>
+          </div>
+          <div>
+            <dt class="text-xs uppercase tracking-[0.18em] text-gold-800 font-semibold">Correo</dt>
+            <dd class="mt-1"><a href={`mailto:${site.email}`} class="hover:text-gold-800">{site.email}</a></dd>
+          </div>
+          <div>
+            <dt class="text-xs uppercase tracking-[0.18em] text-gold-800 font-semibold">Horario</dt>
+            <dd class="mt-1">Lunes a Sábado, 9:00am a 6:00pm<br />Domingo, Cerrado</dd>
+          </div>
+        </dl>
+      </div>
+      <div class="lg:col-span-3 reveal bg-white p-7 md:p-10 rounded-sm shadow-xl border border-navy-50">
+        <h2 class="font-serif text-2xl text-navy mb-2 uppercase">¿Cómo Podemos Ayudarte?</h2>
+        <p class="text-sm text-navy-500 mb-7">Normalmente respondemos en un día hábil.</p>
+        <ContactForm />
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-stone/50 py-12">
+    <div class="container-x">
+      <iframe
+        title="Ubicación de K-1 Custom"
+        src="https://www.google.com/maps?q=6647+Narcoossee+Rd+Suite+120+Orlando+FL+32822&output=embed"
+        width="100%"
+        height="400"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        sandbox="allow-scripts allow-popups"
+        class="rounded-sm shadow-md"
+      ></iframe>
+    </div>
+  </section>
+</Base>

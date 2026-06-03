@@ -1,10 +1,11 @@
 ---
 import { Image } from 'astro:assets';
 import { gallery } from '@/data/gallery';
+import { t, getLocale } from '@/i18n';
+const locale = getLocale(Astro.url.pathname);
+const tr = t(locale);
 
-interface Props {
-  limit?: number;
-}
+interface Props { limit?: number; }
 const { limit } = Astro.props;
 const items = limit ? gallery.slice(0, limit) : gallery;
 ---
@@ -14,7 +15,7 @@ const items = limit ? gallery.slice(0, limit) : gallery;
       href={item.src.src}
       target="_blank"
       rel="noopener noreferrer"
-      aria-label={`View full size: ${item.label} (opens in new tab)`}
+      aria-label={`${tr.ui.viewFullSize}: ${item.label} ${tr.ui.openInNewTab}`}
       class="gallery-item reveal group relative overflow-hidden bg-navy aspect-square block"
       style={`transition-delay: ${(i % 8) * 60}ms`}
     >

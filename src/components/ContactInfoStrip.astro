@@ -1,10 +1,14 @@
 ---
 import { site } from '@/data/site';
+import { t, getLocale } from '@/i18n';
+const locale = getLocale(Astro.url.pathname);
+const tr = t(locale);
+
 const items = [
-  { label: 'Visit Us', value: `${site.address.street}, ${site.address.city}, ${site.address.region} ${site.address.postal}`, icon: 'pin', valueClass: 'text-sm md:text-base break-words' },
-  { label: 'Call Us', value: site.phone, href: site.phoneHref, icon: 'phone', valueClass: 'text-sm md:text-base whitespace-nowrap' },
-  { label: 'Email Us', value: site.email, href: `mailto:${site.email}`, icon: 'mail', valueClass: 'text-xs md:text-sm break-all' },
-  { label: 'Hours', value: 'Mon to Sat · 9am to 6pm', icon: 'clock', valueClass: 'text-sm md:text-base' },
+  { label: tr.contactInfo.visitUs, value: `${site.address.street}, ${site.address.city}, ${site.address.region} ${site.address.postal}`, icon: 'pin', valueClass: 'text-sm md:text-base break-words' },
+  { label: tr.contactInfo.callUs, value: site.phone, href: site.phoneHref, icon: 'phone', valueClass: 'text-sm md:text-base whitespace-nowrap' },
+  { label: tr.contactInfo.emailUs, value: site.email, href: `mailto:${site.email}`, icon: 'mail', valueClass: 'text-xs md:text-sm break-all' },
+  { label: tr.contactInfo.hours, value: tr.contactInfo.hoursValueShort, icon: 'clock', valueClass: 'text-sm md:text-base' },
 ];
 ---
 <section class="bg-navy text-white">
